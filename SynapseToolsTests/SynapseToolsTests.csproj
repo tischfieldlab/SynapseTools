@@ -56,10 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SynapseAPI\SynapseTools.csproj">
+    <ProjectReference Include="..\SynapseTools\SynapseTools.csproj">
       <Project>{ccaeb2aa-db1a-47eb-937e-c3258a20b2f2}</Project>
       <Name>SynapseTools</Name>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

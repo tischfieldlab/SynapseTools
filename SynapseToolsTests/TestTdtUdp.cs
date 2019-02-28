@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SynapseTools;
+using System.Linq;
 
 namespace SynapseToolsTests
 {
@@ -18,16 +19,16 @@ namespace SynapseToolsTests
         [TestMethod]
         public void TestCreateClient()
         {
-            var client = new TdtUdp(typeof(float), "localhost");
+            var client = new TdtUdp("localhost");
         }
         [TestMethod]
         public void TestSendData()
         {
-            int iterations = 10;
-            int packetLength = 50;
+            int iterations = 100;
+            int packetLength = 4;
             Random randNum = new Random();
 
-            var client = new TdtUdp(typeof(float), "localhost");
+            var client = new TdtUdp("localhost");
             for(int i=0; i< iterations; i++)
             {
                 float[] data = new float[packetLength];
@@ -45,11 +46,12 @@ namespace SynapseToolsTests
         {
             int iterations = 1000;
 
-            var client = new TdtUdp(typeof(float), "172.17.50.89");
+            var client = new TdtUdp("172.17.50.89");
             for (int i = 0; i < iterations; i++)
             {
-                var data = client.Receive();
-                Debug.WriteLine(data);
+                float[] data = client.Receive<float>();
+                //Debug.WriteLine(data);
+                Debug.WriteLine("[{0}]", string.Join(", ", data.Select(v => v.ToString())));
             }
         }
 
