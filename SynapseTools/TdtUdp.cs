@@ -37,7 +37,10 @@ namespace SynapseTools
             get { return this.port; }
         }
 
-
+        public void Close()
+        {
+            this.client.Close();
+        }
         public void Send<T>(T[] data)
         {
             int dataLength = Buffer.ByteLength(data);
