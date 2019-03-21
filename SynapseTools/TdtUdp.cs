@@ -1,10 +1,18 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SynapseTools
 {
+    public class DataReceivedEventArgs : EventArgs
+    {
+        public Array Data { get; set; }
+    }
+
     public class TdtUdp
     {
         protected static readonly byte CMD_SEND_DATA = 0x00;
@@ -16,6 +24,8 @@ namespace SynapseTools
         protected string hostname;
         protected int port;
         protected UdpClient client;
+
+        public event EventHandler<DataReceivedEventArgs> DataRecieved;
 
         public TdtUdp(string Hostname, int Port = 22022)
         {
@@ -39,6 +49,8 @@ namespace SynapseTools
 
         public void Close()
         {
+            this.tokenSource.Cancel();
+            this.listeningTask.Wait();
             this.client.Close();
         }
         public void Send<T>(T[] data)
@@ -59,6 +71,32 @@ namespace SynapseTools
             this.client.Send(message, message.Length, this.hostname, this.port);
         }
 
+        protected Task listeningTask;
+        protected CancellationTokenSource tokenSource;
+        public void Listen<T>()
+        {
+            if(this.listeningTask != null)
+            {
+                throw new InvalidOperationException("Cannot listen as I am already listening!");
+            }
+            this.tokenSource = new CancellationTokenSource();
+            this.listeningTask = Task.Factory.StartNew(() =>
+            {
+                //make sure we were not requested to cancel
+                while (!this.tokenSource.IsCancellationRequested)
+                {
+                    //make sure data is available, otherwise we may deadlock blocking on recieve
+                    if (this.client.Available > 0) 
+                    {
+                        var data = this.Receive<T>();
+                        this.DataRecieved?.Invoke(this, new DataReceivedEventArgs()
+                        {
+                            Data = data
+                        });
+                    }
+                }
+            }, this.tokenSource.Token);
+        }
         public T[] Receive<T>()
         {
             var endpoint = new IPEndPoint(IPAddress.Any, 0);

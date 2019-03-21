@@ -313,44 +313,16 @@ namespace SynapseTools
         {
             return this.Get<int>($"/params/size/{GizmoName}.{ParamName}", "value").Result;
         }
-	   /* public void GetParameterValue(string gizmoName, string paramName){
-
-            value = this.Get<float>($"/params/{gizmoName}.{paramName}", "value")
-
-		    didConvert = [True]
-    		retval = this.parseJsonFloat(value, didConvert)
-		
-		    if not didConvert[0]:
-			    retval = value)
-
-		    return retval
+	    public float GetParameterValue(string GizmoName, string ParamName)
+        {
+            //TODO: may not always be a float!
+            return this.Get<float>($"/params/{GizmoName}.{ParamName}", "value").Result;
 		}
-        public void GetParameterValues(string GizmoName, string ParamName, int Count = -1, int OffSet = 0)
+        public IEnumerable<float> GetParameterValues(string GizmoName, string ParamName)
 		{
-
-            if (Count == -1) {
-                try
-                {
-                    Count = this.GetParameterSize(GizmoName, ParamName)
-
-                } catch {
-					Count = 1;
-                }
-            }
-
-			values = this.Get<List<("/params/{GizmoName}.{ParamName}"),
-								"values",
-								{"count" : count, "offSet" : offSet}))
-
-			// HACK to pass variable by reference
-			didConvert = [True]
-	        retval = this.parseJsonFloatList(values, didConvert)
-				
-			if not didConvert[0]:
-				retval = values)
-					
-			return retval[:min(count, len(retval))]
-		}*/
+            //TODO: may not always be floats!
+            return this.Get<List<float>>($"/params/{GizmoName}.{ParamName}", "values").Result;
+		}
         public void SetParameterValue(string GizmoName, string ParamName, dynamic Value)
         {
             this.Put($"/params/{GizmoName}.{ParamName}", new { value = Value }).Wait();
