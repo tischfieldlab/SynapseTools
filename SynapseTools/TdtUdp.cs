@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,6 +11,7 @@ namespace SynapseTools
 {
     public class DataReceivedEventArgs : EventArgs
     {
+        public DateTime Timestamp { get; set; }
         public Array Data { get; set; }
     }
 
@@ -91,7 +93,8 @@ namespace SynapseTools
                         var data = this.Receive<T>();
                         this.DataRecieved?.Invoke(this, new DataReceivedEventArgs()
                         {
-                            Data = data
+                            Data = data,
+                            Timestamp = new DateTime(Stopwatch.GetTimestamp())
                         });
                     }
                 }
