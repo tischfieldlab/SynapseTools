@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/tischfieldlab/SynapseTools/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/tischfieldlab/SynapseTools</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright 2019</copyright>
+    <tags>Synapse</tags>
+  </metadata>
+</package>

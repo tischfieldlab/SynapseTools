@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SynapseAPI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SynapseTools")]
+[assembly: AssemblyDescription("https://github.com/tischfieldlab/SynapseTools")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Division of Life Sciences")]
-[assembly: AssemblyProduct("SynapseAPI")]
-[assembly: AssemblyCopyright("Copyright © Division of Life Sciences 2019")]
+[assembly: AssemblyCompany("Jay A Tischfield Lab")]
+[assembly: AssemblyProduct("SynapseTools")]
+[assembly: AssemblyCopyright("Copyright © Jay A Tischfield Lab, Rutgers University 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
