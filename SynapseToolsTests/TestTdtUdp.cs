@@ -5,6 +5,7 @@ using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SynapseTools;
 using System.Linq;
+using System.Net.Sockets;
 
 namespace SynapseToolsTests
 {
@@ -21,7 +22,7 @@ namespace SynapseToolsTests
         {
             var client = new TdtUdp("localhost");
         }
-        [TestMethod]
+        [TestMethod, ExpectedException(typeof(SocketException))]
         public void TestSendData()
         {
             int iterations = 100;
@@ -41,7 +42,7 @@ namespace SynapseToolsTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, ExpectedException(typeof(SocketException))]
         public void TestReceiveData()
         {
             int iterations = 1000;

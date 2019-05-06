@@ -15,7 +15,7 @@ namespace SynapseToolsTests
             this.client = SynapseClient.GetClient();
         }
 
-        [TestMethod]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void TestModeToggle()
         {
             Assert.AreEqual(SynapseMode.Idle, this.client.Mode);
@@ -25,17 +25,17 @@ namespace SynapseToolsTests
             this.client.Mode = SynapseMode.Idle;
             Assert.AreEqual(SynapseMode.Idle, this.client.Mode);
         }
-        [TestMethod]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void TestMethod2()
         {
             Assert.AreEqual("Best", this.client.GetPersistMode());
         }
-        [TestMethod]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void TestMethod3()
         {
             CollectionAssert.AreEqual(new List<string>() { "Best", "Last", "Fresh" }, this.client.GetPersistModes());
         }
-        [TestMethod]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void TestApiSurface()
         {
             var m = this.client.Mode;
