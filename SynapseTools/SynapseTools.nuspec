@@ -13,4 +13,7 @@
     <copyright>Copyright 2019</copyright>
     <tags>Synapse</tags>
   </metadata>
+  <dependencies>
+    <dependency id="Newtonsoft.Json" version="12.0.1" />
+  </dependencies>
 </package>
