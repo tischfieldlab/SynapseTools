@@ -12,8 +12,8 @@
     <description>$description$</description>
     <copyright>Copyright 2019</copyright>
     <tags>Synapse</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="12.0.1" />
+    </dependencies>
   </metadata>
-  <dependencies>
-    <dependency id="Newtonsoft.Json" version="12.0.1" />
-  </dependencies>
 </package>
