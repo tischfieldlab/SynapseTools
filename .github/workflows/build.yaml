@@ -42,5 +42,5 @@ jobs:
         uses: microsoft/vstest-action@v1.0.0
         with:
           testAssembly: SynapseToolsTests.dll
-          searchFolder: .\SynapseToolsTests
+          searchFolder: .\SynapseToolsTests\bin\Release
           codeCoverageEnabled: true
