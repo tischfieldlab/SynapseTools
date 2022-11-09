@@ -36,11 +36,11 @@ jobs:
         run: msbuild SynapseTools.sln -t:rebuild -verbosity:diag -property:Configuration=Release
 
       - name: Run Tests
-        run: vstest.console.exe .\SynapseToolsTests\bin\Release\SynapseToolsTests.dll
+        run: vstest.console.exe .\SynapseToolsTests\bin\Release\SynapseToolsTests.dll /EnableCodeCoverage
 
-      - name: Run tests
-        uses: microsoft/vstest-action@v1.0.0
-        with:
-          testAssembly: SynapseToolsTests.dll
-          searchFolder: .\SynapseToolsTests\bin\Release
-          codeCoverageEnabled: true
+#      - name: Run tests
+#        uses: microsoft/vstest-action@v1.0.0
+#        with:
+#          testAssembly: SynapseToolsTests.dll
+#          searchFolder: .\SynapseToolsTests\bin\Release
+#          codeCoverageEnabled: true
