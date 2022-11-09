@@ -39,6 +39,6 @@ jobs:
         run: vstest.console.exe .\SynapseToolsTests\bin\Release\SynapseToolsTests.dll
 
       - name: Run tests
-        uses: microsoft/vstest@v1
+        uses: microsoft/vstest-action@v1.0.0
         with:
           testAssembly: SynapseToolsTests.dll
